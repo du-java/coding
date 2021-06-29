@@ -1,4 +1,3 @@
-import java.util.Locale;
 
 /**
  * Write simple .camelCase method (camel_case function in PHP, CamelCase in C# or camelCase in Java) for strings. All words must have their first letter capitalized without spaces.
@@ -11,18 +10,13 @@ import java.util.Locale;
 public class CamelCaseMethod {
     public static String camelCase(String str) {
         String[] s = str.split("\\s+");
-        String word = "";
-        String camelCase = "";
-        for (int i = 0; i < s.length; i++) {
-            if (s[i].isEmpty()){
+        final StringBuilder builder = new StringBuilder();
+        for (String value : s) {
+            if (value.isEmpty()) {
                 continue;
             }
-            word = s[i];
-            String firstLetter = s[i].substring(0, 1).toUpperCase(Locale.ROOT);
-            String substring = word.substring(1);
-            String rtn = firstLetter + substring;
-            camelCase += rtn;
+            builder.append(value.substring(0, 1).toUpperCase()).append(value.substring(1));
         }
-        return camelCase;
+        return builder.toString();
     }
 }
