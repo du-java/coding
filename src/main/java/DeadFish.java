@@ -16,7 +16,6 @@ import java.util.*;
  */
 public class DeadFish {
 
-//iiisdoso
     public static int[] parse(String data) {
         int startValue = 0;
         String[] array = data.split("");
@@ -38,7 +37,6 @@ public class DeadFish {
             }
         }
 
-        System.out.println(list);
         return list.stream().mapToInt(Integer::intValue).toArray();
     }
 }
