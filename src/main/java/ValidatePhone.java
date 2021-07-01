@@ -13,10 +13,7 @@
  */
 public class ValidatePhone {
 
-
-
     public static boolean validPhoneNumber(String phoneNumber) {
-        boolean matches = phoneNumber.matches("\\(\\d+\\)\\s\\d+\\-\\d+");
-        return matches;
+        return phoneNumber.matches("\\(\\d+\\)\\s\\d+\\-\\d+");
     }
 }
