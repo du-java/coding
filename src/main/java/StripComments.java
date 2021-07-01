@@ -26,25 +26,18 @@ import java.util.List;
 public class StripComments {
 
     public static String stripComments(String text, String[] commentSymbols) {
-        List<String> list = new ArrayList<String>();
+
+        List<String> list = new ArrayList<>();
         String[] split = text.split("\n");
-        for (String s : split) {
-            for (String s1 : commentSymbols) {
-                int i = s.indexOf(s1);
-                if (i != -1) {
-                    s = s.substring(0, i).trim();
+        for (String str : split) {
+            for (String sym : commentSymbols) {
+                int idx = str.indexOf(sym);
+                if (idx != -1) {
+                    str = str.substring(0, idx).replaceAll("\\s*$","");
                 }
             }
-
-            list.add(s);
+            list.add(str);
         }
-//        "apples, pears\ngrapes\nbananas",
-//                StripComments.stripComments("apples, pears # and bananas\ngrapes\nbananas !apples", new String[]{"#", "!"})
-//      
-//                "a\nc\nd",
-//                StripComments.stripComments("a #b\nc\nd $e f g", new String[]{"#", "$"})
-
-        return String.join("\n",list);
+        return String.join("\n", list);
     }
-
 }

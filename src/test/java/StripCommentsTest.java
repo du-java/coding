@@ -11,6 +11,11 @@ class StripCommentsTest {
         );
 
         assertEquals(
+                "apples, pears\n grapes\nbananas",
+                StripComments.stripComments("apples, pears # and bananas\n grapes\nbananas !apples", new String[]{"#", "!"})
+        );
+
+        assertEquals(
                 "a\nc\nd",
                 StripComments.stripComments("a #b\nc\nd $e f g", new String[]{"#", "$"})
         );
