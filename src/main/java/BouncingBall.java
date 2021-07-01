@@ -27,14 +27,14 @@
 public class BouncingBall {
 
     public static int bouncingBall(final double h, final double bounce, final double window) {
-        if (h <= 0 || (bounce <= 0 && bounce >= 1) || window >= h) {
+        if (h <= 0 || bounce <= 0 || bounce >= 1 || window >= h) {
             return -1;
         }
         int increment = 1;
         double height = h * bounce;
 
 
-        while (height >= window) {
+        while (height > window) {
             increment += 2;
             height *= bounce;
         }
