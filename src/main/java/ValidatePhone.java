@@ -12,8 +12,11 @@
  * validPhoneNumber("(098) 123 4567")  => returns false
  */
 public class ValidatePhone {
+
+
+
     public static boolean validPhoneNumber(String phoneNumber) {
-        // TODO: Return whether phoneNumber is in the proper form
-        return false;
+        boolean matches = phoneNumber.matches("\\(\\d+\\)\\s\\d+\\-\\d+");
+        return matches;
     }
 }
