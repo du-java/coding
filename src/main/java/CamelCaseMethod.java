@@ -8,7 +8,14 @@
  */
 public class CamelCaseMethod {
     public static String camelCase(String str) {
-        // your code here
-        return null;
+        String[] s = str.split("\\s+");
+        final StringBuilder builder = new StringBuilder();
+        for (String value : s) {
+            if (value.isEmpty()) {
+                continue;
+            }
+            builder.append(value.substring(0, 1).toUpperCase()).append(value.substring(1));
+        }
+        return builder.toString();
     }
 }

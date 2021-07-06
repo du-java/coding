@@ -44,12 +44,7 @@ public class TopWords {
         Map<String, Integer> words = new HashMap<>();
         for (String s1 : split) {
             if (s1.isEmpty()) continue;
-            Integer value = words.get(s1);
-            if (value == null) {
-                words.put(s1, 1);
-            } else {
-                words.put(s1, value + 1);
-            }
+            words.merge(s1, 1, Integer::sum);
         }
         Map<String, Integer> sortWords = sortByValue(words);
         return sortWords.keySet().stream().limit(3).collect(Collectors.toList());
