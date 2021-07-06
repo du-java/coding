@@ -1,6 +1,4 @@
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * In this kata we want to convert a string into an integer. The strings simply represent the numbers in words.
@@ -28,30 +26,51 @@ public class IntParser {
         map.put("forty", 40);
         map.put("six", 6);
         map.put("seven", 7);
-        map.put("hundred", 100);
         map.put("eighty", 80);
         map.put("three", 3);
-        map.put("thousand", 1000);
         map.put("nine", 9);
         map.put("nineteen", 19);
-        String[] split = numStr.split("\\W+");
-        Integer count = 0;
-        Integer tmp = 0;
-        for (String number : split) {
+        int accTh = 0;
 
-            if(number.equals("hundred")){
-                count += tmp *100;
-                continue;
-            }
-            if(number.equals("thousand")){
-                count += tmp *1000;
-                continue;
+        String[] split = numStr.split("thousand");
+
+        String thousands;
+        String hundreds;
+        if (split.length > 1) {
+            thousands = split[0];
+            String[] splitTh = thousands.split("hundred");
+            if (splitTh.length > 1) {
+                accTh = map.get(splitTh[0].trim()) * 100;
+                String[] splt = splitTh[1].trim().split("\\W+");
+                for (String s : splt) {
+                    accTh += map.get(s.trim());
+                }
+            } else {
+                accTh += map.get(splitTh[0].trim());
             }
 
-            map.get(number)
+            accTh *= 1000;
+            hundreds = split[1];
+        } else {
+            hundreds = split[0];
         }
 
-        // Your code here!
-        return -1;
+        int accHun = 0;
+        String[] splitHund = hundreds.split("hundred");
+        if (splitHund.length > 1) {
+            accHun = map.get(splitHund[0].trim()) * 100;
+            String[] splt = splitHund[1].trim().split("\\W+");
+            for (String s : splt) {
+                if ("and".equals(s)) {
+                    continue;
+                }
+                accHun += map.get(s.trim());
+            }
+        } else {
+            accHun += map.get(splitHund[0].trim());
+        }
+
+
+        return accTh + accHun;
     }
 }
