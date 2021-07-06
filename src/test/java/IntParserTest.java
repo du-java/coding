@@ -8,5 +8,6 @@ class IntParserTest {
         assertEquals(1, IntParser.parseInt("one"));
         assertEquals(20, IntParser.parseInt("twenty"));
         assertEquals(246, IntParser.parseInt("two hundred forty-six"));
+        assertEquals(783919, IntParser.parseInt("seven hundred eighty-three thousand nine hundred and nineteen"));
     }
 }
